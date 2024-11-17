@@ -9,7 +9,7 @@ class MonitoringStationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MonitoringStation
-        fields = ['id', 'name', 'location', 'country', 'description']
+        fields = ['id', 'name', 'location', 'country', 'description', 'alert_type']  # Added alert_type
 
     def get_location(self, obj):
         """
@@ -37,6 +37,7 @@ class MonitoringStationSerializer(serializers.ModelSerializer):
         instance.name = validated_data.get('name', instance.name)
         instance.country = validated_data.get('country', instance.country)  # Update country
         instance.description = validated_data.get('description', instance.description)
+        instance.alert_type = validated_data.get('alert_type', instance.alert_type)  # Update alert_type
         instance.save()
         return instance
 
